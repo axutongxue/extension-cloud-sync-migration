@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>扩展云同步与迁移助手</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="toolbar">
+    <div class="search-bar">
+      <svg class="search-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+      </svg>
+      <input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="搜索扩展…">
+    </div>
+    <input id="fileImport" type="file" accept=".json,application/json" hidden>
+  </div>
+
+  <div class="actions">
+    <button id="btnFilter" class="btn" data-i18n-title="filters" title="筛选" aria-expanded="false"><span class="b-ico">⛭</span><span data-i18n="filters">筛选</span></button>
+    <button id="btnCloud" class="btn" data-i18n-title="cloudSyncTitle" title="云同步"><span class="b-ico">☁️</span><span data-i18n="cloudSyncTitle">云同步</span></button>
+    <button id="btnImport" class="btn" data-i18n="import">导入</button>
+    <button id="btnExport" class="btn primary" data-i18n="export">导出</button>
+    <button id="btnDonate" class="btn donate-btn" data-i18n-title="donateTitle" title="支持作者">
+      <img src="donate-icon.png" alt="">
+    </button>
+  </div>
+
+  <div id="filterBar" class="filterbar" hidden>
+    <div class="fgroup">
+      <span class="flabel" data-i18n="fStatus">状态</span>
+      <button class="fchip active" data-fkey="status" data-fval="all" data-i18n="fAll">全部</button>
+      <button class="fchip" data-fkey="status" data-fval="enabled" data-i18n="fEnabled">已启用</button>
+      <button class="fchip" data-fkey="status" data-fval="disabled" data-i18n="fDisabled">已停用</button>
+    </div>
+    <div class="fgroup">
+      <span class="flabel" data-i18n="fSource">来源</span>
+      <button class="fchip active" data-fkey="source" data-fval="all" data-i18n="fAll">全部</button>
+      <button class="fchip" data-fkey="source" data-fval="store" data-i18n="srcStore">商店</button>
+      <button class="fchip" data-fkey="source" data-fval="development" data-i18n="srcDev">开发版</button>
+      <button class="fchip" data-fkey="source" data-fval="policy" data-i18n="srcPolicy">企业策略</button>
+      <button class="fchip" data-fkey="source" data-fval="sideload" data-i18n="srcSideload">侧载</button>
+      <button class="fchip" data-fkey="source" data-fval="other" data-i18n="srcOther">其他</button>
+    </div>
+    <button id="btnClearFilters" class="btn-ghost" data-i18n="clearFilters">清除筛选</button>
+  </div>
+
+  <section id="recoveryBox" class="recovery" hidden>
+    <div class="recovery-head">
+      <strong data-i18n="recoveryTitle">恢复</strong>
+      <span id="recoveryStats"></span>
+      <button id="btnClearImport" class="btn-ghost" data-i18n="discard">放弃</button>
+    </div>
+    <div id="recoveryProgress" class="progress" hidden>
+      <div class="progress-inner"></div>
+    </div>
+    <div id="recoveryList" class="recovery-list"></div>
+    <button id="btnInstallNext" class="btn primary full" data-i18n="startRecovery">开始恢复</button>
+  </section>
+
+  <div class="list-head">
+    <label class="selall">
+      <input type="checkbox" id="selAll" checked>
+      <span data-i18n="selectAll">全选</span>
+    </label>
+    <span id="extCount"></span>
+  </div>
+  <div id="extList"></div>
+  <p id="emptyTip" class="empty" hidden data-i18n="noMatch">没有匹配的扩展</p>
+
+  <!-- 云同步弹层 -->
+  <div id="cloudModal" class="modal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <strong data-i18n="cloudTitle">云同步 · WebDAV</strong>
+        <button class="modal-close" data-close="cloudModal">×</button>
+      </div>
+      <div id="cloudBody"></div>
+      <div id="cloudStatus" class="cloud-status"></div>
+    </div>
+  </div>
+
+  <!-- 赞赏码弹层 -->
+  <div id="donateModal" class="modal" hidden>
+    <div class="modal-card donate-card">
+      <div class="modal-head">
+        <strong data-i18n="donateTitle">支持作者</strong>
+        <button class="modal-close" data-close="donateModal">×</button>
+      </div>
+      <img class="donate-qr" src="donate-qr.png" alt="微信二维码">
+    </div>
+  </div>
+
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

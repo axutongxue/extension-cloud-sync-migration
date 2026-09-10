@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Extension Cloud Sync & Migration"
+  },
+  "extDesc": {
+    "message": "Back up, restore and migrate your Chrome extensions: local export/import, WebDAV cloud sync, auto backup on install/uninstall"
+  }
+}

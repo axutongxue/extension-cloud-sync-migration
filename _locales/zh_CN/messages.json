@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "扩展云同步与迁移助手"
+  },
+  "extDesc": {
+    "message": "备份、恢复并迁移您的 Chrome 扩展：本地导入导出、WebDAV 云备份、安装/卸载后自动备份"
+  }
+}

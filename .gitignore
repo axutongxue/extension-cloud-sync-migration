@@ -1,0 +1,19 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# WebDAV 云备份产物 / 导出备份
+backup_*.json
+auto_backup.json
+chrome-plugins.json
+
+# 商店发布包
+release/*.zip
+*.crx
+*.pem
